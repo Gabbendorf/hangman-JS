@@ -5,7 +5,7 @@ export class Rules {
     this.secret_word = secret_word
   }
 
-  isGoodGuess(guess) {
+  isGood(guess) {
     if (this.isCorrectlyGuessed(guess) &&
          this.isValid(guess)) {
       return true

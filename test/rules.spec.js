@@ -7,13 +7,13 @@ beforeEach(() => {
 })
 
 test("confirms is a good guess", () => {
-  expect(rules.isGoodGuess("h")).toBe(true);
+  expect(rules.isGood("h")).toBe(true);
 })
 
 test("confirms is not a good guess", () => {
-  expect(rules.isGoodGuess("i")).toBe(false);
+  expect(rules.isGood("i")).toBe(false);
 })
 
 test("confirms is not a valid guess", () => {
-  expect(rules.isGoodGuess("3")).toBe(false);
+  expect(rules.isGood("3")).toBe(false);
 })
