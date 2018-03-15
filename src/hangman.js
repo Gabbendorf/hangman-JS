@@ -5,7 +5,7 @@ export class Hangman {
     this.guessRegister = guessRegister
   }
 
-  isGameOver() {
+  isOver() {
     if (this.isGuessedWord() || this.areChancesToGuessOver()) {
       return true;
     } else {

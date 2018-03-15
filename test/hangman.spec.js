@@ -17,7 +17,7 @@ test("confirms game is finished because player won", () => {
   guessRegister.remember("h")
   guessRegister.remember("i")
 
-  expect(hangman.isGameOver()).toBe(true)
+  expect(hangman.isOver()).toBe(true)
 })
 
 test("confirms game is finished because player lost", () => {
@@ -25,11 +25,11 @@ test("confirms game is finished because player lost", () => {
     guessRegister.remember(wrongGuess)
   }
 
-  expect(hangman.isGameOver()).toBe(true)
+  expect(hangman.isOver()).toBe(true)
 })
 
 test("confirms game is not finished yet", () => {
   guessRegister.remember("h")
 
-  expect(hangman.isGameOver()).toBe(false)
+  expect(hangman.isOver()).toBe(false)
 })
