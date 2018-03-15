@@ -15,6 +15,7 @@ export class GuessRegister {
   }
 
   isAlreadyGuessed(guess) {
-    return this.correctGuesses.includes(guess) && this.wrongGuesses.includes(guess)
+    let allGuesses = this.correctGuesses.concat(this.wrongGuesses)
+    return allGuesses.includes(guess)
   }
 }
