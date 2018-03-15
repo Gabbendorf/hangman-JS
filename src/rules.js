@@ -21,4 +21,8 @@ export class Rules {
   isValid(guess) {
     return validGuesses.includes(guess);
   }
+
+  getWord() {
+    return this.secret_word
+  }
 }
