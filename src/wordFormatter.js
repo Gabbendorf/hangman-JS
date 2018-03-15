@@ -6,18 +6,14 @@ export class WordFormatter {
 
   formattedWord(secretWord) {
     let secretWordLetters = secretWord.split("");
-    let formattedWord = []
-    for(let i = 0; i < secretWordLetters.length; i++) {
-      this.hideOrReveal(secretWordLetters[i], formattedWord)
-    }
-    return formattedWord.join(" ");
+    return secretWordLetters.map((letter) => this.hideOrReveal(letter)).join(" ");
   }
 
-  hideOrReveal(letter, formattedWord) {
+  hideOrReveal(letter) {
     if (this.guessRegister.correctGuesses.includes(letter)) {
-      formattedWord.push(letter)
+      return letter
     } else {
-      formattedWord.push("_")
+      return "_"
     }
   }
 }
