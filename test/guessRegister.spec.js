@@ -18,3 +18,13 @@ test("remembers a wrong guess", () => {
 
   expect(guessRegister.wrongGuesses).toEqual(["e"])
 })
+
+test("confirms guess was not made already", () => {
+  expect(guessRegister.isAlreadyGuessed("e")).toBe(false)
+})
+
+test("confirms guess was made already", () => {
+  guessRegister.remember("e")
+
+  expect(guessRegister.isAlreadyGuessed("e")).toBe(false)
+})

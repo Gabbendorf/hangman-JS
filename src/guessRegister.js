@@ -13,4 +13,8 @@ export class GuessRegister {
       this.wrongGuesses.push(guess)
     }
   }
+
+  isAlreadyGuessed(guess) {
+    return this.correctGuesses.includes(guess) && this.wrongGuesses.includes(guess)
+  }
 }
