@@ -7,6 +7,8 @@
     "test": "test"
   },
   "scripts": {
+    "//" : "nodemon restarts server after any changes",
+    "watch": "nodemon app.js -e js,pug",
     "start": "node app.js",
     "test": "jest"
   },
