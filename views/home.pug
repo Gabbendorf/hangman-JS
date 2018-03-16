@@ -2,4 +2,11 @@ html
   head
     title= title
   body
-    h1= secretWord
+    h1= "Guess the word!"
+    label(for='letter')
+      input(type='text' id='letter' name='letter_chosen' autofocus="autofocus")
+    button(class='button' type='submit')= "Guess!"
+    p= secretWord
+    img(src= image + ".jpg" alt='hangman' height='500' width='500')
+    div(class)= "Wrong guesses:"
+    p= wrongGuesses
