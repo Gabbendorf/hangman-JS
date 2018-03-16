@@ -8,9 +8,10 @@ let guessRegister
 let wrongGuesses = ["a", "b", "c", "d", "e", "f", "g", "j", "k", "l", "m"]
 
 beforeEach(() => {
-  rules = new Rules("hi")
+  const secretWord = "hi"
+  rules = new Rules(secretWord)
   guessRegister = new GuessRegister(rules)
-  hangman = new Hangman(rules, guessRegister)
+  hangman = new Hangman(rules, guessRegister, secretWord)
 })
 
 test("confirms game is finished because player won", () => {

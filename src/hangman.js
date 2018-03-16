@@ -1,8 +1,9 @@
 export class Hangman {
 
-  constructor(rules, guessRegister) {
+  constructor(rules, guessRegister, secretWord) {
     this.rules = rules
     this.guessRegister = guessRegister
+    this.secretWord = secretWord
   }
 
   isOver() {
@@ -14,7 +15,7 @@ export class Hangman {
   }
 
   isGuessedWord() {
-    return this.rules.getWord().split("").sort().join("") ==
+    return this.secretWord.split("").sort().join("") ==
       this.guessRegister.correctGuesses.sort().join("")
   }
 

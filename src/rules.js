@@ -1,13 +1,12 @@
 const validGuesses = "abcdefghijklmnopqrstuvwxyz".split("");
 export class Rules {
 
-  constructor(secret_word) {
-    this.secret_word = secret_word
+  constructor(secretWord) {
+    this.secretWord = secretWord
   }
 
   isGood(guess) {
-    if (this.isCorrectlyGuessed(guess) &&
-         this.isValid(guess)) {
+    if (this.isCorrectlyGuessed(guess) && this.isValid(guess)) {
       return true
     } else {
       return false
@@ -15,14 +14,10 @@ export class Rules {
   }
 
   isCorrectlyGuessed(guess) {
-    return this.secret_word.includes(guess);
+    return this.secretWord.includes(guess);
   }
 
   isValid(guess) {
     return validGuesses.includes(guess);
-  }
-
-  getWord() {
-    return this.secret_word
   }
 }
