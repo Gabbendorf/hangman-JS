@@ -1,5 +1,5 @@
 import {WordFormatter} from '../src/wordFormatter'
-import {GuessRegister} from '../src/guessRegister'
+import GuessRegister from '../src/guessRegister'
 import {Rules} from '../src/rules'
 
 let wordFormatter

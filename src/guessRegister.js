@@ -1,4 +1,4 @@
-export class GuessRegister {
+export default class GuessRegister {
 
   constructor(rules) {
     this.rules = rules
@@ -15,7 +15,7 @@ export class GuessRegister {
   }
 
   isAlreadyGuessed(guess) {
-    let allGuesses = this.correctGuesses.concat(this.wrongGuesses)
+    const allGuesses = this.correctGuesses.concat(this.wrongGuesses)
     return allGuesses.includes(guess)
   }
 }

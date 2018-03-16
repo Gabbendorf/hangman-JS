@@ -15,11 +15,11 @@ export class Hangman {
   }
 
   isGuessedWord() {
-    return this.secretWord.split("").sort().join("") ==
+    return this.secretWord.split("").sort().join("") ===
       this.guessRegister.correctGuesses.sort().join("")
   }
 
   areChancesToGuessOver() {
-    return this.guessRegister.wrongGuesses.length == 11;
+    return this.guessRegister.wrongGuesses.length === 11;
   }
 }

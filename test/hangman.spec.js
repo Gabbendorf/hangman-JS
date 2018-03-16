@@ -1,6 +1,6 @@
 import {Hangman} from '../src/hangman'
 import {Rules} from '../src/rules'
-import {GuessRegister} from '../src/guessRegister'
+import GuessRegister from '../src/guessRegister'
 
 let hangman
 let rules

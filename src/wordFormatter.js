@@ -5,7 +5,7 @@ export class WordFormatter {
   }
 
   formattedWord(secretWord) {
-    let secretWordLetters = secretWord.split("");
+    const secretWordLetters = secretWord.split("");
     return secretWordLetters.map((letter) => this.hideOrReveal(letter)).join(" ");
   }
 
