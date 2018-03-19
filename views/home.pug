@@ -1,12 +1,15 @@
+doctype html
 html
   head
     title= title
   body
-    h1= "Guess the word!"
-    form(action='/guess' method='post')
-      input(id='letter_guessed' type='text' name='letter' autofocus='autofocus')
-      button(class='guess_button' type='submit')= "Guess!"
-    p= secretWord
-    img(src= image + ".jpg" alt='hangman' height='500' width='500')
-    div(class)= "Wrong guesses:"
-    p= wrongGuesses
+    div(class='container')
+      h1= "Guess the word!"
+      form(action='/guess' method='post')
+        input(id='letter-guessed' type='text' name='letter' autofocus='autofocus')
+        button(class='guess-button' type='submit')= "Guess!"
+      p(class='secret-word')= secretWord
+      img(src=image + ".jpg" alt='hangman' height='500' width='500')
+      div(class='Wrong-guesses')
+        p= "Wrong guesses:"
+        p=wrongGuesses
