@@ -11,9 +11,13 @@ export class WordFormatter {
 
   hideOrReveal(letter) {
     if (this.guessRegister.correctGuesses.includes(letter)) {
-      return letter
+      return letter.toUpperCase()
     } else {
       return "_"
     }
+  }
+
+  formatGuessed(secretWord) {
+    return secretWord.toUpperCase()
   }
 }

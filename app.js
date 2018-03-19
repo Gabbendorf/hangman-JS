@@ -13,11 +13,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
+
 const randomWord = new WordGenerator(new Words().secretWords()).randomWord()
 const rules = new Rules(randomWord)
 const guessRegister = new GuessRegister(new Rules(randomWord))
 const game = new Hangman(rules, guessRegister, randomWord)
 const imageLibrary = new ImageLibrary(game)
+const wordFormatter = new WordFormatter(guessRegister)
 
 //set up the template engine
 app.set('views', './views');
@@ -28,7 +30,7 @@ app.get('/', function (req, res) {
   res.render('home', {
     title: 'Hangman',
     image: imageLibrary.updatedImage(guessRegister.wrongGuesses),
-    secretWord: new WordFormatter(guessRegister).formattedWord(randomWord),
+    secretWord: wordFormatter.formattedWord(randomWord),
     wrongGuesses: new GuessesFormatter().formatted(guessRegister.wrongGuesses)
   })
 })
@@ -47,7 +49,7 @@ app.get('/game-over', function (req, res) {
   res.render('gameOver', {
     title: 'Hangman',
     image: imageLibrary.updatedImage(guessRegister.wrongGuesses),
-    secretWordRevealed: randomWord,
+    secretWordRevealed: wordFormatter.formatGuessed(randomWord),
     verdictMessage: game.verdict()
   })
 })
