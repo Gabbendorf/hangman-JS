@@ -23,7 +23,6 @@ app.use(express.static('public'))
 app.get('/', function (req, res) {
   const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
   res.render('home', {
-    title: 'Hangman',
     image: new ImageLibrary(game).updatedImage(guessRegister.wrongGuesses),
     secretWord: new WordFormatter(guessRegister).formattedWord(randomWord),
     wrongGuesses: new GuessesFormatter().formatted(guessRegister.wrongGuesses)
@@ -44,7 +43,6 @@ app.post('/guess', urlencodedParser, function (req, res) {
 app.get('/game-over', function (req, res) {
   const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
   res.render('gameOver', {
-    title: 'Hangman',
     image: new ImageLibrary(game).updatedImage(guessRegister.wrongGuesses),
     secretWordRevealed: new WordFormatter(guessRegister).formatGuessed(randomWord),
     verdictMessage: game.verdict()
