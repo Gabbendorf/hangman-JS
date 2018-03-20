@@ -19,7 +19,7 @@ export class Hangman {
   }
 
   isGuessedWord() {
-    return this.uniqWordLetters().sort().join("") ===
+    return this.uniqueWordLetters().sort().join("") ===
       this.guessRegister.correctGuesses.sort().join("")
   }
 
@@ -35,7 +35,7 @@ export class Hangman {
     }
   }
 
-  uniqWordLetters() {
+  uniqueWordLetters() {
     return [...new Set(this.secretWord.split(""))]
   }
 }
