@@ -46,3 +46,12 @@ test('/game-over route has a button to play again', () => {
     expect(response.res.text).toContain("<button class=\"replay-button\" type=\"replay\">Play again")
   })
 });
+
+test('posting to /play-again responds with a redirect to root', () => {
+  return request(app)
+    .post("/play-again")
+    .then(response => {
+      expect(response.res.text).toContain("Redirecting to /")
+    })
+});
+

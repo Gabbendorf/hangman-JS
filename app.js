@@ -1,4 +1,3 @@
-//require all dependencies
 import {Words} from './src/words'
 import {WordGenerator} from './src/wordGenerator'
 import {images} from './src/imageLibrary'
@@ -14,28 +13,25 @@ const bodyParser = require('body-parser')
 const app = express()
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
 
-const randomWord = new WordGenerator(new Words().secretWords()).randomWord()
-const rules = new Rules(randomWord)
-const guessRegister = new GuessRegister(new Rules(randomWord))
-const game = new Hangman(rules, guessRegister, randomWord)
-const imageLibrary = new ImageLibrary(game)
-const wordFormatter = new WordFormatter(guessRegister)
+let randomWord = new WordGenerator(new Words().secretWords()).randomWord()
+let guessRegister = new GuessRegister(new Rules(randomWord))
 
-//set up the template engine
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static('public'))
 
 app.get('/', function (req, res) {
+  const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
   res.render('home', {
     title: 'Hangman',
-    image: imageLibrary.updatedImage(guessRegister.wrongGuesses),
-    secretWord: wordFormatter.formattedWord(randomWord),
+    image: new ImageLibrary(game).updatedImage(guessRegister.wrongGuesses),
+    secretWord: new WordFormatter(guessRegister).formattedWord(randomWord),
     wrongGuesses: new GuessesFormatter().formatted(guessRegister.wrongGuesses)
   })
 })
 
 app.post('/guess', urlencodedParser, function (req, res) {
+  const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
   const firstLetterGuessed = req.body.letter[0]
   guessRegister.remember(firstLetterGuessed)
   if (game.isOver()) {
@@ -46,12 +42,20 @@ app.post('/guess', urlencodedParser, function (req, res) {
 })
 
 app.get('/game-over', function (req, res) {
+  const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
   res.render('gameOver', {
     title: 'Hangman',
-    image: imageLibrary.updatedImage(guessRegister.wrongGuesses),
-    secretWordRevealed: wordFormatter.formatGuessed(randomWord),
+    image: new ImageLibrary(game).updatedImage(guessRegister.wrongGuesses),
+    secretWordRevealed: new WordFormatter(guessRegister).formatGuessed(randomWord),
     verdictMessage: game.verdict()
   })
 })
+
+app.post('/play-again', urlencodedParser, function (req, res) {
+  randomWord = new WordGenerator(new Words().secretWords()).randomWord()
+  guessRegister = new GuessRegister(new Rules(randomWord))
+  res.redirect('/')
+})
+
 
 module.exports = app
