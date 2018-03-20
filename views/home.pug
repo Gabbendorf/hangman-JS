@@ -12,4 +12,4 @@ html
       img(src=image + ".jpg" alt='hangman' height='500' width='500')
       div(class='Wrong-guesses')
         p= "Wrong guesses:"
-        p=wrongGuesses
+        p(class='wrong-guesses-displayed')=wrongGuesses
