@@ -40,3 +40,9 @@ test('/game-over route shows message for lost game as word was not guessed', () 
     expect(response.res.text).toContain("<p>You lost!</p>")
   })
 });
+
+test('/game-over route has a button to play again', () => {
+  return request(app).get("/game-over").then(response => {
+    expect(response.res.text).toContain("<button class=\"replay-button\" type=\"replay\">Play again")
+  })
+});
