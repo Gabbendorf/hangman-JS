@@ -6,7 +6,8 @@ export class Rules {
   }
 
   isGood(guess) {
-    if (this.isCorrectlyGuessed(guess) && this.isValid(guess)) {
+    const lowerCaseGuess = guess.toLowerCase()
+    if (this.isCorrectlyGuessed(lowerCaseGuess) && this.isValid(lowerCaseGuess)) {
       return true
     } else {
       return false

@@ -20,11 +20,11 @@ test("remembers a wrong guess", () => {
 })
 
 test("confirms guess was not made already", () => {
-  expect(guessRegister.isAlreadyGuessed("e")).toBe(false)
+  expect(guessRegister.isNotAlreadyGuessed("e")).toBe(true)
 })
 
 test("confirms guess was made already", () => {
   guessRegister.remember("e")
 
-  expect(guessRegister.isAlreadyGuessed("e")).toBe(true)
+  expect(guessRegister.isNotAlreadyGuessed("e")).toBe(false)
 })
