@@ -31,7 +31,10 @@ app.get('/', function (req, res) {
 
 app.post('/guess', urlencodedParser, function (req, res) {
   const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
-  const firstLetterGuessed = req.body.letter[0]
+  let firstLetterGuessed = req.body.letter[0]
+  if (typeof(firstLetterGuessed) === 'undefined') {
+    firstLetterGuessed = ""
+  }
   guessRegister.remember(firstLetterGuessed)
   if (game.isOver()) {
     res.redirect('/game-over')
