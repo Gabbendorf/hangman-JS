@@ -3,7 +3,6 @@ import {WordGenerator} from './src/wordGenerator'
 import {images} from './src/imageLibrary'
 import {WordFormatter} from './src/wordFormatter'
 import GuessRegister from './src/guessRegister'
-import {Rules} from './src/rules'
 import {GuessesFormatter} from './src/guessesFormatter'
 import {Hangman} from './src/hangman'
 import {ImageLibrary} from './src/imageLibrary'
@@ -14,14 +13,14 @@ const app = express()
 const urlencodedParser = bodyParser.urlencoded({ extended: false})
 
 let randomWord = new WordGenerator(new Words().secretWords()).randomWord()
-let guessRegister = new GuessRegister(new Rules(randomWord))
+let guessRegister = new GuessRegister(randomWord)
 
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(express.static('public'))
 
 app.get('/', function (req, res) {
-  const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
+  const game = new Hangman(guessRegister, randomWord)
   res.render('home', {
     image: new ImageLibrary(game).updatedImage(guessRegister.wrongGuesses),
     secretWord: new WordFormatter(guessRegister).formattedWord(randomWord),
@@ -30,12 +29,12 @@ app.get('/', function (req, res) {
 })
 
 app.post('/guess', urlencodedParser, function (req, res) {
-  const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
-  let firstLetterGuessed = req.body.letter[0]
-  if (typeof(firstLetterGuessed) === 'undefined') {
-    firstLetterGuessed = ""
+  const game = new Hangman(guessRegister, randomWord)
+  let letterGuessed = req.body.letter
+  if (typeof(letterGuessed) === 'undefined') {
+    letterGuessed = ""
   }
-  guessRegister.remember(firstLetterGuessed)
+  guessRegister.remember(letterGuessed)
   if (game.isOver()) {
     res.redirect('/game-over')
   } else {
@@ -44,7 +43,7 @@ app.post('/guess', urlencodedParser, function (req, res) {
 })
 
 app.get('/game-over', function (req, res) {
-  const game = new Hangman(new Rules(randomWord), guessRegister, randomWord)
+  const game = new Hangman(guessRegister, randomWord)
   res.render('gameOver', {
     image: new ImageLibrary(game).updatedImage(guessRegister.wrongGuesses),
     secretWordRevealed: new WordFormatter(guessRegister).formatGuessed(randomWord),
@@ -54,7 +53,7 @@ app.get('/game-over', function (req, res) {
 
 app.post('/play-again', urlencodedParser, function (req, res) {
   randomWord = new WordGenerator(new Words().secretWords()).randomWord()
-  guessRegister = new GuessRegister(new Rules(randomWord))
+  guessRegister = new GuessRegister(randomWord)
   res.redirect('/')
 })
 

@@ -1,14 +1,12 @@
 import {WordFormatter} from '../src/wordFormatter'
 import GuessRegister from '../src/guessRegister'
-import {Rules} from '../src/rules'
 
 let wordFormatter
 let guessRegister
-let rules
 
 beforeEach(() => {
-  rules = new Rules("hello")
-  guessRegister = new GuessRegister(rules)
+  const secretWord = "hello"
+  guessRegister = new GuessRegister(secretWord)
   wordFormatter = new WordFormatter(guessRegister)
 })
 
