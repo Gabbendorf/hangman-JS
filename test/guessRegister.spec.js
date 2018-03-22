@@ -21,13 +21,19 @@ test("remembers a not correctly guessed letter", () => {
 test("does not remember a number", () => {
   guessRegister.remember("3")
 
-  expect(guessRegister.wrongGuesses).toEqual([])
+  expect(guessRegister.allGuesses()).toEqual([])
+})
+
+test("does not remember an empty guess", () => {
+  guessRegister.remember("")
+
+  expect(guessRegister.allGuesses()).toEqual([])
 })
 
 test("does not remember a symbol", () => {
   guessRegister.remember(",")
 
-  expect(guessRegister.wrongGuesses).toEqual([])
+  expect(guessRegister.allGuesses()).toEqual([])
 })
 
 test("does remember a not correctly guessed letter only once", () => {

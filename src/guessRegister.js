@@ -31,7 +31,11 @@ export default class GuessRegister {
   }
 
   isNotAlreadyGuessed(guess) {
-    const allGuesses = this.correctGuesses.concat(this.wrongGuesses)
-    return !allGuesses.includes(guess)
+    return !this.allGuesses().includes(guess)
+  }
+
+  allGuesses() {
+    return this.correctGuesses.concat(this.wrongGuesses)
+c
   }
 }
