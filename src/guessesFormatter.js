@@ -1,6 +1,6 @@
 export class GuessesFormatter {
 
-  formatted(wrongGuesses) {
-    return wrongGuesses.map((guess) => guess.toUpperCase()).join(" ")
+  formatted(guesses) {
+    return guesses.map((guess) => guess.toUpperCase()).join(" ")
   }
 }
