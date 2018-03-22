@@ -1,17 +1,15 @@
 import {ImageLibrary} from '../src/imageLibrary'
-import {Rules} from '../src/rules'
 import {Hangman} from '../src/hangman'
 import GuessRegister from '../src/guessRegister/'
 
 let imageLibrary
-let rules
 let game
 let guessRegister
 
 beforeEach(() => {
-  rules = new Rules("hi")
-  guessRegister = new GuessRegister(rules)
-  game = new Hangman(rules, guessRegister, "hi")
+  const secretWord = "hi"
+  guessRegister = new GuessRegister(secretWord)
+  game = new Hangman(guessRegister, secretWord)
   imageLibrary = new ImageLibrary(game)
 })
 

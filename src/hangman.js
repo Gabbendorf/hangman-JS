@@ -1,7 +1,6 @@
 export class Hangman {
 
-  constructor(rules, guessRegister, secretWord) {
-    this.rules = rules
+  constructor(guessRegister, secretWord) {
     this.guessRegister = guessRegister
     this.secretWord = secretWord
   }
@@ -12,10 +11,6 @@ export class Hangman {
     } else {
       return false;
     }
-  }
-
-  isOngoing() {
-    return !this.isOver()
   }
 
   isGuessedWord() {

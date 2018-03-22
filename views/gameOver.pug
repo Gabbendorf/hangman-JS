@@ -1,9 +1,11 @@
 doctype html
 html
   head
-    title= title
+    title= "Hangman"
   body
     img(src= image + ".jpg" alt='hangman' height='500' width='500')
     p= secretWordRevealed
     p= verdictMessage
+    form(action='play-again' method='post')
+      button(class='replay-button' type='replay')= "Play again"
 
