@@ -6,11 +6,7 @@ export class Hangman {
   }
 
   isOver() {
-    if (this.isGuessedWord() || this.areChancesToGuessOver()) {
-      return true;
-    } else {
-      return false;
-    }
+    return this.isGuessedWord() || this.areChancesToGuessOver()
   }
 
   isGuessedWord() {
